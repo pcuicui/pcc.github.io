@@ -1,22 +1,24 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
-  "private": true,
+  "name": "pcuicui.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
-  "hexo": {
-    "version": "4.2.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcuicui/pcuicui.github.io.git"
   },
-  "dependencies": {
-    "hexo": "^4.0.0",
-    "hexo-generator-archive": "^1.0.0",
-    "hexo-generator-category": "^1.0.0",
-    "hexo-generator-index": "^1.0.0",
-    "hexo-generator-tag": "^1.0.0",
-    "hexo-server": "^1.0.0"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcuicui/pcuicui.github.io/issues"
+  },
+  "homepage": "https://github.com/pcuicui/pcuicui.github.io#readme",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
   }
 }
