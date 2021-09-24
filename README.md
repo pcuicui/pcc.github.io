@@ -1,7 +1,6 @@
 # 我的文档
 
-
-静态网站生成器 [vuepress](https://www.vuepress.cn/)
+https://pcuicui.github.io/docs/
 
 ### 安装
 ```bash

@@ -39,7 +39,7 @@ function getSidebar({dir = '/', pattern = '**/*.md'} = {}) {
 }
 
 module.exports = {
-  base: '',
+  base: '/docs/',
   title: '',
   description: '',
   dest: 'dist',
