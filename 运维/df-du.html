@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linux磁盘管理：df、du、fdisk</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.49c4267e.css" as="style"><link rel="preload" href="/docs/assets/js/app.945da7b2.js" as="script"><link rel="preload" href="/docs/assets/js/2.6f4e82ae.js" as="script"><link rel="preload" href="/docs/assets/js/8.33b9e64c.js" as="script"><link rel="prefetch" href="/docs/assets/js/3.dc6faac7.js"><link rel="prefetch" href="/docs/assets/js/4.aab0c0c4.js"><link rel="prefetch" href="/docs/assets/js/5.53ead715.js"><link rel="prefetch" href="/docs/assets/js/6.effa9b2b.js"><link rel="prefetch" href="/docs/assets/js/7.d7672a1a.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.49c4267e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/" class="nav-link">
+  Home
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/" class="nav-link">
+  Home
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/docs/" aria-current="page" class="sidebar-link">个人主页</a></li><li><section class="sidebar-group depth-0"><a href="/docs/运维/" class="sidebar-heading clickable open"><span>运维</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/运维/df-du.html" class="active sidebar-link">linux磁盘管理：df、du、fdisk</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/运维/df-du.html#df" class="sidebar-link">df</a></li><li class="sidebar-sub-header"><a href="/docs/运维/df-du.html#du-disk-usage" class="sidebar-link">du(disk usage)</a></li><li class="sidebar-sub-header"><a href="/docs/运维/df-du.html#fdisk" class="sidebar-link">fdisk</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="linux磁盘管理-df、du、fdisk"><a href="#linux磁盘管理-df、du、fdisk" class="header-anchor">#</a> linux磁盘管理：df、du、fdisk</h1> <p>三个常用命令：</p> <ol><li>df用于检查文件系统磁盘占用情况</li> <li>du检查磁盘空间占用情况</li> <li>fdisk用于磁盘分区</li></ol> <h2 id="df"><a href="#df" class="header-anchor">#</a> df</h2> <p>df命令可以获取硬盘被占用了多少空间，目前还剩下多少空间，它也可以显示所有文件系统对i节点和磁盘块的是有情况。</p> <p>df命令各个选项的含有如下：</p> <div class="language- extra-class"><pre class="language-text"><code>-a: 显示所有文件系统的磁盘使用情况，包括0块(block)的文件系统，如/proc文件系统
+-k: 以k字节为单位显示
+-i: 显示i节点信息，而不是磁盘块
+-t: 显示各指定类型的文件系统的磁盘空间使用情况
+-x: 列出不是某一指定类型文件系统的磁盘空间使用情况(与t选项相反)
+-T: 显示文件系统类型
+-h: 方便阅读方式显示
+-l: 只显示本地文件系统
+
+--help: 显示帮助信息
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>输入： df -h
+输出：
+Filesystem    Size    Used    Avail    Use%    Mounted on
+tmpfs         1.9G    12k     1.9G     1%      /dev/shm
+/dev/sda1     477M    72M     380M     16%     /boot
+/dev/sda3     89G     76G     8.4G     91%     /data
+</code></pre></div><p>第一列代表文件系统对应的设备文件的路径名；第二列给出分区包含的数据块(1024字节)的数目；第三、四列分别表示已用和可用的数据块数目；第五列表示文件系统的安装点。</p> <p><strong>第3、4列总和不等于第2列中的数据。因为默认的每个分区都留有少量空间供系统管理员使用。</strong></p> <h2 id="du-disk-usage"><a href="#du-disk-usage" class="header-anchor">#</a> du(disk usage)</h2> <p>du显示磁盘空间的使用情况，统计目录(或文件)所占磁盘空间的大小。</p> <p>该命令的功能是逐级进入指定目录的每一个子目录并显示该目录占用文件系统数据块(1024字节)的情况。若没给出指定目录，则对当前目录进行统计。</p> <p>df命令的各个选项含有如下：</p> <div class="language- extra-class"><pre class="language-text"><code>-s: 对每个Names参数只给出占用的数据块总数
+-a: 递归显示指定目录中各文件及子目录中各文件占用的数据块数。不指定-s，也不指定-a，则只显示Names中的每一个目录及其中的各子目录所占的磁盘块数。
+-b: 以字节为单位列出磁盘空间使用情况。
+-k: 以1024字节为单位列出磁盘空间使用情况
+-c: 最后再加上一个总计(系统默认设置)
+-l: 计算所有的文件大小，对硬链接文件，则计算多次
+-x: 跳过在不同文件系统上的目录不予统计
+-h: 方便阅读方式显示
+
+--help: 显示帮助信息
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>输入：du -sh /data/program/*
+输出：
+xx.xG  /data/program/xx
+</code></pre></div><h2 id="fdisk"><a href="#fdisk" class="header-anchor">#</a> fdisk</h2> <p>参考</p> <p>http://www.cnblogs.com/peida/archive/2012/12/07/2806483.html</p> <p>http://os.51cto.com/art/201012/240726_all.htm</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docs/" class="prev router-link-active">
+        个人主页
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/docs/assets/js/app.945da7b2.js" defer></script><script src="/docs/assets/js/2.6f4e82ae.js" defer></script><script src="/docs/assets/js/8.33b9e64c.js" defer></script>
+  </body>
+</html>
