@@ -1,6 +1,6 @@
 # 我的文档
 
-https://pcuicui.github.io/docs/
+[链接](https://pcuicui.github.io/docs/)
 
 ### 安装
 ```bash
