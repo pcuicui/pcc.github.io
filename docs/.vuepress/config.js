@@ -40,7 +40,7 @@ function getSidebar({dir = '/', pattern = '**/*.md'} = {}) {
 
 module.exports = {
   base: '/docs/',
-  title: '',
+  title: '碎片式记忆',
   description: '',
   dest: 'dist',
   themeConfig: {
