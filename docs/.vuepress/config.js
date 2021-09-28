@@ -44,6 +44,7 @@ module.exports = {
   description: '',
   dest: 'dist',
   themeConfig: {
+    lastUpdated: 'Last Updated',
     displayAllHeaders: true,
     sidebarDepth: 2,
     nav: [
