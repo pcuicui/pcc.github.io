@@ -41,9 +41,10 @@ console.log(randomHex())
 借助 `navigator.clipboard.writeText` 可以很容易的将文本复制到剪贴板，但规范要求写入剪贴板前需使用[Permissions API](https://developer.mozilla.org/zh-CN/docs/Web/API/Permissions_API)获取写入权限，这各个浏览器要求不同。可查看 compatibility table and Clipboard availability in Clipboard。 [Navigator.clipboard](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/clipboard)
 
 ```js
-const clipToClipboard = (text) => navigator.clipboard.writeText(text)
+const clipToClipboard = async (text) => { await navigator.clipboard.writeText(text) }
 
-clipToClipboard('hello world')
+document.body.onclick = function() { clipToClipboard('hello world') }
+
 ```
 
 ## 获取用户选择的文本

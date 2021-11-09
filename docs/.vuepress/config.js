@@ -22,7 +22,7 @@ function getSidebar({dir = '/', pattern = '**/*.md'} = {}) {
         const children = getSidebar({dir: paths})
         sidebar.push({
           title: parentDir,
-          collapsable: false,
+          collapsable: true,
           sidebarDepth: 2,
           path: paths,
           children: children.length === 1 && children[0] === paths ? [] : children,
@@ -44,7 +44,7 @@ module.exports = {
   description: '',
   dest: 'dist',
   themeConfig: {
-    lastUpdated: 'Last Updated',
+    // lastUpdated: 'Last Updated',
     displayAllHeaders: true,
     sidebarDepth: 2,
     nav: [
